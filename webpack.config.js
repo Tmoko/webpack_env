@@ -8,7 +8,7 @@ const { resolve } = require('path');
 
 let rules = [
     {
-        test: /\.css/, //.cssを検知する
+        test: /\.(css|sass|scss)/, //.cssを検知する
         //実行順は下から上
         use: [
             {
@@ -16,6 +16,15 @@ let rules = [
             },
             {
                 loader: 'css-loader'
+            },
+            {
+                loader: 'sass-loader',
+                options: {
+                    implementation: require('sass'),
+                    sassOptions: {
+                        fiber: false
+                    }
+                }
             }
         ]
     },

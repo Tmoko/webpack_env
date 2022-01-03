@@ -1,4 +1,4 @@
 import my from './my.js'
-import '../css/main.css'
+import '../css/main.scss'
 console.log('webpack');
 my();
