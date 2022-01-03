@@ -20,11 +20,11 @@ let rules = [
         ]
     },
     {
-        test: /\.(png|jpg)/,
-        type: 'asset/resource',
+        test: /\.(png|jpg|gif|svg)$/i,
         generator: {
             filename: 'images/[name][ext]'
         },
+        type: 'asset/resource',
         use:[
             // {
             //     loader: 'file-loader',
@@ -40,6 +40,18 @@ let rules = [
         use: {
             loader: 'html-loader',
         }
+    },
+    {
+        test: /\.pug$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'pug-loader',
+            options: {
+              pretty: true,
+            }
+          }
+        ]
     }
 ]
 
@@ -47,8 +59,12 @@ let rules = [
 const build = {
     mode: "development",
     devServer: {
-        static: "dist",
-        open: true
+        static: {
+            directory: path.join(__dirname, "dist"),
+            watch: true
+          },
+          liveReload: true,
+          open: true,
     },
     resolve: {
         extensions: ['.js', '.json', '.scss', '.css'],
@@ -71,25 +87,41 @@ const build = {
         new MiniCssExtractPlugin({
             filename: './css/main.css',
         }),
-        // new HtmlWebpackPlugin({
-        //     template: './src/templates/index.html'
-        // }),
         new CleanWebpackPlugin()
-    ]
+    ],
+    stats: {
+        children: true,
+      },
 }
 
-const htmlFiles = globule.find('src/templates/**/*.html');
+// const htmlFiles = globule.find('src/templates/**/*.html');
 
-htmlFiles.forEach((htmlFile) => {
-    const htmlname = htmlFile.split('/').slice(-1)[0];
+// htmlFiles.forEach((htmlFile) => {
+//     const htmlname = htmlFile.split('/').slice(-1)[0];
 
+//     build.plugins.push(
+//         new HtmlWebpackPlugin({
+//             filename: `${path.resolve(__dirname, './dist')}/${htmlname}`,
+//             // inject: 'body',
+//             template: htmlFile,
+//             minify: false
+//         })
+//     )
+// });
+
+const pugFiles = globule.find('src/templates/**/*.pug', {
+    ignore: ['src/templates/components/*','src/templates/layouts/*' ]
+});
+
+pugFiles.forEach((pug) => {
+    const html = pug.split('/').slice(-1)[0].replace('.pug', '.html');
     build.plugins.push(
-        new HtmlWebpackPlugin({
-            filename: `${path.resolve(__dirname, './dist')}/${htmlname}`,
-            // inject: 'body',
-            template: htmlFile,
-            minify: false
-        })
+      new HtmlWebpackPlugin({
+        filename: `${path.resolve(__dirname, 'dist')}/${html}`,
+        // inject:'body',
+        template: pug,
+        minify: false
+      })
     )
 });
 
