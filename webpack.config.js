@@ -2,9 +2,14 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const { isContext } = require('vm');
 
-module.exports = {
+
+const app = {
+    mode: "development",
+    devServer: {
+        static: "dist",
+        open: true
+    },
     entry: './src/js/main.js',
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -42,6 +47,8 @@ module.exports = {
             }
         ]
     },
+    // ES5(IE11等)向けの指定
+    target: ['web', 'es5'],
     plugins:[
         new MiniCssExtractPlugin({
             filename: './css/main.css',
@@ -52,3 +59,5 @@ module.exports = {
         new CleanWebpackPlugin()
     ]
 }
+
+module.exports = app;
