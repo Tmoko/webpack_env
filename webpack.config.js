@@ -8,6 +8,20 @@ const { resolve } = require('path');
 
 let rules = [
     {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+            {
+                loader: 'babel-loader',
+                options: {
+                    presets:[
+                        '@babel/preset-env',
+                    ],
+                }
+            }
+        ]
+    },
+    {
         test: /\.(css|sass|scss)/, //.cssを検知する
         //実行順は下から上
         use: [
@@ -52,7 +66,6 @@ let rules = [
     },
     {
         test: /\.pug$/,
-        exclude: /node_modules/,
         use: [
           {
             loader: 'pug-loader',
