@@ -47,7 +47,7 @@ let rules = [
     {
         test: /\.(png|jpe?g|gif|svg)$/i,
         generator: {
-            filename: 'images/[name][ext]'
+            filename: 'images/[name]-[contenthash][ext]'
         },
         type: 'asset/resource',
         use:[
@@ -101,7 +101,8 @@ const build = {
     entry: './src/js/main.js',
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: './js/main.js'
+        filename: './js/[name]-[contenthash].js',
+        publicPath: '/'
     },
     module: {
         rules: rules,
@@ -110,7 +111,7 @@ const build = {
     target: ['web', 'es5'],
     plugins:[
         new MiniCssExtractPlugin({
-            filename: './css/main.css',
+            filename: './css/[name]-[contenthash].css',
         }),
         new ImageMinimizerPlugin({
             minimizer: {

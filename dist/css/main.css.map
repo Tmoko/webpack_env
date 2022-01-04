@@ -1,1 +1,0 @@
-{"version":3,"file":"./css/main.css","mappings":";;;AAAA;EACI;AACJ;;AAEA;EACI;AACJ;AAAI;EACI;AAER,C","sources":["webpack://webpack5/./src/css/main.scss"],"sourcesContent":["body {\n    color: pink;\n}\n\n.content {\n    color: lightcoral;\n    .title {\n        font-size: 24px;\n    }\n}\n"],"names":[],"sourceRoot":""}

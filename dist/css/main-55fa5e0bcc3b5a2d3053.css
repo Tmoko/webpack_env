@@ -12,4 +12,10 @@ body {
   font-size: 24px;
 }
 
-/*# sourceMappingURL=main.css.map*/
+.main-img {
+  background: url(/images/thumbnail-d82d6cb8a918795502ef.jpg);
+  background-size: contain;
+  height: 100vh;
+}
+
+/*# sourceMappingURL=main-55fa5e0bcc3b5a2d3053.css.map*/
