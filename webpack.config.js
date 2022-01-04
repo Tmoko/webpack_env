@@ -1,9 +1,10 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const globule = require('globule');
-const { resolve } = require('path');
+
 const MODE = "development";
 const enabledSourceMap = MODE === "development";
 
@@ -44,7 +45,7 @@ let rules = [
         ]
     },
     {
-        test: /\.(png|jpg|gif|svg)$/i,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         generator: {
             filename: 'images/[name][ext]'
         },
@@ -111,6 +112,28 @@ const build = {
         new MiniCssExtractPlugin({
             filename: './css/main.css',
         }),
+        new ImageMinimizerPlugin({
+            minimizer: {
+              implementation: ImageMinimizerPlugin.squooshMinify,
+              options: {
+                encodeOptions: {
+                    //https://github.com/GoogleChromeLabs/squoosh/blob/dev/libsquoosh/src/codecs.ts
+                  mozjpeg: {
+                    quality: 75,
+                  },
+                  oxipng: {
+                    // level: 2,
+                  },
+                  webp: {
+                    lossless: 1,
+                  },
+                  avif: {
+                    cqLevel: 0,
+                  },
+                },
+              },
+            },
+          }),
         new CleanWebpackPlugin()
     ],
     stats: {
