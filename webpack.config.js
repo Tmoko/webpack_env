@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const globule = require('globule');
 const { resolve } = require('path');
-
+const MODE = "development";
+const enabledSourceMap = MODE === "development";
 
 let rules = [
     {
@@ -22,8 +23,7 @@ let rules = [
         ]
     },
     {
-        test: /\.(css|sass|scss)/, //.cssを検知する
-        //実行順は下から上
+        test: /\.(css|sass|scss)/,
         use: [
             {
                 loader: MiniCssExtractPlugin.loader
@@ -37,7 +37,8 @@ let rules = [
                     implementation: require('sass'),
                     sassOptions: {
                         fiber: false
-                    }
+                    },
+                    sourceMap: enabledSourceMap
                 }
             }
         ]
@@ -79,7 +80,8 @@ let rules = [
 
 
 const build = {
-    mode: "development",
+    devtool: 'source-map',
+    mode: MODE,
     devServer: {
         static: {
             directory: path.join(__dirname, "dist"),

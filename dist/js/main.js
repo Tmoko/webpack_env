@@ -1,24 +1,6 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 /******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
-
-/***/ "./src/js/main.js":
-/*!************************!*\
-  !*** ./src/js/main.js ***!
-  \************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _my_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./my.js */ \"./src/js/my.js\");\n/* harmony import */ var _css_main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/main.scss */ \"./src/css/main.scss\");\n\n\nconsole.log('webpack');\n(0,_my_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n//# sourceURL=webpack://webpack5/./src/js/main.js?");
-
-/***/ }),
 
 /***/ "./src/js/my.js":
 /*!**********************!*\
@@ -26,7 +8,27 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _my_
   \**********************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (function () {\n  console.log('this is module!');\n});\n\n//# sourceURL=webpack://webpack5/./src/js/my.js?");
+__webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  console.log('this is module!');
+  var obj = {
+    a: 1,
+    b: 2
+  };
+  var obj2 = {
+    c: 3
+  };
+
+  var obj3 = _objectSpread(_objectSpread({}, obj), obj2);
+
+  console.log(obj3);
+});
 
 /***/ }),
 
@@ -36,7 +38,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
   \***************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://webpack5/./src/css/main.scss?");
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ })
 
@@ -79,11 +83,20 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	}();
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/js/main.js");
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+!function() {
+/*!************************!*\
+  !*** ./src/js/main.js ***!
+  \************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _my_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./my.js */ "./src/js/my.js");
+/* harmony import */ var _css_main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/main.scss */ "./src/css/main.scss");
+
+
+console.log('webpack');
+(0,_my_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
+}();
 /******/ })()
 ;
+//# sourceMappingURL=main.js.map

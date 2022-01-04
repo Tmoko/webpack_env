@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx webpack --mode development",
-    "build": "npx webpack --mode production",
-    "watch": "npx webpack --mode development --watch"
+    "dev": "npx webpack --mode=development",
+    "build": "npx webpack --mode=production",
+    "watch": "npx webpack --mode=development --watch",
+    "start": "npx webpack serve --mode=development"
   },
   "author": "Tomoko",
   "license": "UNLICENSED",
